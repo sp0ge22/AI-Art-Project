@@ -3,6 +3,9 @@ const imageElement = document.querySelector(".ai-container img");
 const guessInput = document.getElementById("guess");
 const regenerateButton = document.querySelector(".regenerate-container button");
 const submitButton = document.querySelector(".guess-container button");
+const messageContainer = document.querySelector(".message-container");
+
+// Message Elements
 const congratsMessage = document.createElement("p");
 congratsMessage.textContent = "Congratulations, you've guessed the image!";
 congratsMessage.classList.add("congrats-message");
@@ -19,27 +22,30 @@ function generateRandomNumber(min, max) {
 function regenerateImage() {
   const randomNumber = generateRandomNumber(1, 10); // Modify the range as needed
   imageElement.src = `ai-generated-image-${randomNumber}.png`;
-  congratsMessage.style.display = "none"; // Hide the congratulations message
-  tryAgainMessage.style.display = "none"; // Hide the try again message
+  messageContainer.innerHTML = ""; // Clear any messages
 }
 
 // Submit the user's guess
-function submitGuess() {
-    const userGuess = guessInput.value.trim().toLowerCase();
+function submitGuess(event) {
+  event.preventDefault(); // Prevent form submission or page reload
+  const userGuess = guessInput.value.trim().toLowerCase();
+
+  // Log the user's guess to the console
+  console.log("User's guess:", userGuess);
+
+  // Clear any previous message
+  messageContainer.innerHTML = "";
   
-    if (userGuess === "tree") {
-    
-      document.querySelector(".regenerate-container").appendChild(congratsMessage);
-      congratsMessage.style.display = "block"; // Show the congratulations message
-      tryAgainMessage.style.display = "none"; // Hide the try again message
-    } else {
-      document.querySelector(".regenerate-container").appendChild(tryAgainMessage);
-      tryAgainMessage.style.display = "block"; // Show the try again message
-      congratsMessage.style.display = "none"; // Hide the congratulations message
-    }
-  
-    guessInput.value = ""; // Clear the input field
+  if (userGuess === "tree") {
+    console.log("Correct guess");
+    messageContainer.appendChild(congratsMessage);
+  } else {
+    console.log("Incorrect guess");
+    messageContainer.appendChild(tryAgainMessage);
   }
+
+  guessInput.value = ""; // Clear the input field
+}
 
 // Attach event listeners to the buttons
 regenerateButton.addEventListener("click", regenerateImage);
