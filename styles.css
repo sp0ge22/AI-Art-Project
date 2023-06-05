@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+    background-color: #f2f2f2; /* Light grey color */
+}
+
+.logo-container {
+  margin: 20px;
+  width: 5%
+}
+
+.ai-container {
+    margin: 40px auto;
+    max-width: 640px; /* Adjust the maximum width as needed */
+    text-align: center;
+  }
+  
+  .ai-container img {
+    max-width: 100%;
+    height: auto; /* Adjust the maximum height as needed */
+    border: 2px solid black;
+  }
+  
+
+.guess-container {
+  margin-bottom: 20px;
+}
+
+.regenerate-container {
+  margin-top: 20px;
+}
+
+button {
+  border-radius: 20px;
+  padding: 1px 20px;
+}
