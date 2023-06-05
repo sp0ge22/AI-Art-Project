@@ -13,6 +13,16 @@ const tryAgainMessage = document.createElement("p");
 tryAgainMessage.textContent = "Try again.";
 tryAgainMessage.classList.add("try-again-message");
 
+// Define images and their corresponding answers
+const images = [
+  { src: 'ai-generated-image-1.png', answer: 'tree' },
+  { src: 'ai-generated-image-2.png', answer: 'balloon' },
+  { src: 'ai-generated-image-3.png', answer: 'chicken' },
+  // add as many images as you want...
+];
+
+let currentAnswer = ''; // this will hold the correct answer
+
 // Generate a random number for the image filename
 function generateRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -20,8 +30,10 @@ function generateRandomNumber(min, max) {
 
 // Regenerate the AI-generated image
 function regenerateImage() {
-  const randomNumber = generateRandomNumber(1, 10); // Modify the range as needed
-  imageElement.src = `ai-generated-image-${randomNumber}.png`;
+  const randomNumber = generateRandomNumber(0, images.length - 1); // get a random index
+  const image = images[randomNumber]; // get the image at that index
+  imageElement.src = image.src; // set the image source
+  currentAnswer = image.answer; // store the correct answer
   messageContainer.innerHTML = ""; // Clear any messages
 }
 
@@ -36,7 +48,7 @@ function submitGuess(event) {
   // Clear any previous message
   messageContainer.innerHTML = "";
   
-  if (userGuess === "tree") {
+  if (userGuess === currentAnswer) {
     console.log("Correct guess");
     messageContainer.appendChild(congratsMessage);
   } else {
@@ -50,3 +62,6 @@ function submitGuess(event) {
 // Attach event listeners to the buttons
 regenerateButton.addEventListener("click", regenerateImage);
 submitButton.addEventListener("click", submitGuess);
+
+// Generate the first image when the script loads
+regenerateImage();
