@@ -4,23 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="cache-control" content="no-cache">
-  <meta http-equiv="expires" content="0">
-  <meta http-equiv="pragma" content="no-cache">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <title>Document</title>
 </head>
 <body>
   <header>
     <div class="logo-container">
-      <img src="logo.png" alt="Logo">
+      <img src="logo.png?cachebust=<%= new Date().getTime() %>" alt="Logo">
     </div>
   </header>
 
   <main>
     <div class="ai-container">
       <h2 id="image-title"></h2>
-      <img src="ai-generated-image.png" alt="AI Generated Image">
+      <img src="ai-generated-image.png?cachebust=<%= new Date().getTime() %>" alt="AI Generated Image">
     </div>
 
     <div class="guess-container">
