@@ -30,9 +30,33 @@ button:hover {
 
 /* Main content styles */
 
+.checkmark, .ai-container {
+  background-color: transparent;
+}
+
+.ai-container {
+  position: relative;  /* make this a positioned parent */
+}
+
+#checkmark {
+  position: absolute;
+  bottom: 0;  /* position at the bottom-right corner */
+  right: 0;
+  display: none;  /* initially hidden */
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.title-change-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* to align items vertically */
+  padding-bottom: 15px;
+}
+
 .ai-container,
-.guess-container,
-.regenerate-container {
+.guess-container{
   margin: auto;
   max-width: 640px; /* Adjust the maximum width as needed */
   text-align: center;
@@ -45,10 +69,9 @@ button:hover {
 }
 
 #image-title {
-  font-size: 24px;
-  color: #000000; /* Or any color */
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin: 0; /* to eliminate default margins on the h2 tag. Adjust if needed */
+  flex-grow: 1; /* to let the title take up the remaining space */
+  text-align: center;
 }
 
 .guess-container,
@@ -66,11 +89,6 @@ button:hover {
   box-sizing: border-box;
   border-radius: 20px;
   font-size: 15px;
-}
-
-.regenerate-container button {
-  width: 18%; /* Adjust based on your preference */
-  height: 30px;
 }
 
 .input-hint-container {
@@ -101,10 +119,6 @@ button:hover {
   color: black;
 }
 
-.regenerate-container {
-  margin-top: 20px;
-}
-
 /* Message container styles */
 
 .congrats-message,
@@ -133,3 +147,22 @@ button:hover {
   background-color: #000000; /* Or any color */
   color: #ffffff; /* Or any color */
 }
+
+.change-image-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  max-width: 640px; /* Add this line */
+  margin: auto; /* Add this line */
+}
+
+.previous-button,
+.next-button {
+  width: 100px; /* Adjust based on your preference */
+  height: 30px;
+  font-weight: bold;
+  border: 2px solid black;
+  color: black;
+}
+
+

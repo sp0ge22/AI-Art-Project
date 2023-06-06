@@ -16,8 +16,13 @@
 
   <main>
     <div class="ai-container">
-      <h2 id="image-title"></h2>
+      <div class="title-change-container">
+        <button class="previous-button">Previous</button>
+        <h2 id="image-title"></h2>
+        <button class="next-button">Next</button>
+      </div>
       <img src="ai-generated-image.png?cachebust=<%= new Date().getTime() %>" alt="AI Generated Image">
+      <img id="checkmark" src="checkmark.png" alt="Correct guess checkmark">
     </div>
 
     <div class="guess-container">
@@ -31,18 +36,14 @@
       </div>
     </div>
     
-    <div class="submit-container">
-      <button class="submit-button" onclick="submitGuess(event)">Submit</button>
-    </div>
-
-    <div class="regenerate-container">
-      <button class="regenerate-button" onclick="regenerateImage()">Regenerate</button>
-    </div>
-
     <div class="message-container">
     </div>
   </main>
 
-  <script src="script.js"></script>
+    <div class="submit-container">
+      <button class="submit-button">Submit</button>
+    </div>
+
+  <script src="script.js" type="module"></script>
 </body>
 </html>
