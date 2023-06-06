@@ -17,11 +17,27 @@ const images = data.images;
 
 // Message Elements
 const congratsMessage = document.createElement("p");
-congratsMessage.textContent = "Congratulations, you've guessed the image!";
 congratsMessage.classList.add("congrats-message");
 const tryAgainMessage = document.createElement("p");
-tryAgainMessage.textContent = "Try again.";
 tryAgainMessage.classList.add("try-again-message");
+
+// Function to update congratsMessage
+function updateCongratsMessage() {
+  congratsMessage.textContent = "Congratulations, you've guessed the image!";
+  if (messageContainer.contains(congratsMessage)) {
+    messageContainer.removeChild(congratsMessage);
+  }
+  messageContainer.appendChild(congratsMessage);
+}
+
+// Function to update tryAgainMessage
+function updateTryAgainMessage() {
+  tryAgainMessage.textContent = "Try again.";
+  if (messageContainer.contains(tryAgainMessage)) {
+    messageContainer.removeChild(tryAgainMessage);
+  }
+  messageContainer.appendChild(tryAgainMessage);
+}
 
 let currentAnswer = []; // this will hold the correct answer
 let currentHints = []; // this will hold the correct hints
@@ -47,7 +63,6 @@ function generateRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 function displayImage(index) {
   const image = images[index]; // get the image at that index
   imageElement.src = image.src; // set the image source
@@ -66,15 +81,24 @@ function displayImage(index) {
     guessInput1.style.display = "none";
     guessInput2.style.display = "none";
     submitButton.style.display = "none";
+    guessInput1.disabled = true;
+    guessInput2.disabled = true;
+    guessInput1.classList.remove("correct-guess");
+    guessInput2.classList.remove("correct-guess");
   } else {
     checkmark.style.display = "none";
     guessInput1.style.display = "block";
     guessInput2.style.display = "block";
     submitButton.style.display = "block";
+    guessInput1.disabled = false;
+    guessInput2.disabled = false;
+    guessInput1.classList.remove("correct-guess");
+    guessInput2.classList.remove("correct-guess");
+    guessInput1.value = ""; // Clear the input field value
+    guessInput2.value = ""; // Clear the input field value
   }
 }
 
-// Submit the user's guess
 function submitGuess(event) {
   event.preventDefault(); // Prevent form submission or page reload
 
@@ -87,28 +111,61 @@ function submitGuess(event) {
   // Clear any previous message
   messageContainer.innerHTML = "";
 
-  // check if both words were guessed (in any order)
-  if ((userGuess1 === currentAnswer[0] && userGuess2 === currentAnswer[1]) || 
-      (userGuess1 === currentAnswer[1] && userGuess2 === currentAnswer[0])) {
+  // Check if both words were guessed (in any order)
+  if (
+    (userGuess1 === currentAnswer[0] && userGuess2 === currentAnswer[1]) ||
+    (userGuess1 === currentAnswer[1] && userGuess2 === currentAnswer[0])
+  ) {
     console.log("Correct guess");
-    messageContainer.appendChild(congratsMessage);
-    images[currentIndex].guessed = true; // update the guessed status
-    checkmark.style.display = "block"; // show the checkmark
+    updateCongratsMessage();
+    images[currentIndex].guessed = true; // Update the guessed status
+    checkmark.style.display = "block"; // Show the checkmark
 
-    // Hide the submit button and guess fields
-    document.getElementById('guess1').style.display = 'none';
-    document.getElementById('guess2').style.display = 'none';
-    document.querySelector('.submit-button').style.display = 'none';
+    // Hide the submit button
+    submitButton.style.display = "none";
+
+    // Disable and style the input fields for the correctly guessed image
+    guessInput1.disabled = true;
+    guessInput2.disabled = true;
+    guessInput1.classList.add("correct-guess");
+    guessInput2.classList.add("correct-guess");
   } else {
     console.log("Incorrect guess");
-    messageContainer.appendChild(tryAgainMessage);
-    images[currentIndex].guessed = false; // update the guessed status
-    checkmark.style.display = "none"; // hide the checkmark
-  }
+    images[currentIndex].guessed = false; // Update the guessed status
+    checkmark.style.display = "none"; // Hide the checkmark
 
-  // Clear the input fields
-  guessInput1.value = "";
-  guessInput2.value = "";
+    // Reset the style and enable the input fields for the incorrect guess
+    guessInput1.classList.remove("correct-guess");
+    guessInput2.classList.remove("correct-guess");
+    guessInput1.disabled = false;
+    guessInput2.disabled = false;
+
+    // Check if one or both words are correct
+    let incorrectGuess1 = true; // Flag to track incorrect guess for word 1
+    let incorrectGuess2 = true; // Flag to track incorrect guess for word 2
+
+    // Check if word 1 is correct
+    if (userGuess1 === currentAnswer[0] || userGuess1 === currentAnswer[1]) {
+      guessInput1.classList.add("correct-guess"); // Apply the correct-guess class
+      incorrectGuess1 = false; // Set the flag for correct guess
+    }
+
+    // Check if word 2 is correct
+    if (userGuess2 === currentAnswer[0] || userGuess2 === currentAnswer[1]) {
+      guessInput2.classList.add("correct-guess"); // Apply the correct-guess class
+      incorrectGuess2 = false; // Set the flag for correct guess
+    }
+
+    // Display messages based on the guess results
+    if (incorrectGuess1 && incorrectGuess2) {
+      updateTryAgainMessage();
+      messageContainer.innerHTML = "<p class='message-text'>You have guessed both words incorrectly. Try again.</p>"; // Set the message
+    } else if (!incorrectGuess1 && !incorrectGuess2) {
+      messageContainer.innerHTML = "<p class='message-text'>You have guessed both words correctly!</p>"; // Set the message
+    } else {
+      messageContainer.innerHTML = "<p class='message-text'>You have guessed one word correctly. Guess the other word.</p>"; // Set the message
+    }
+  }
 }
 
 // Attach event listeners to the buttons

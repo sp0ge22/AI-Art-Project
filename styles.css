@@ -84,11 +84,14 @@ button:hover {
 }
 
 .guess-container input {
-  width: 100; /* Adjust based on your preference */
+  width: 100%; /* Adjust based on your preference */
   padding: 5px;
   box-sizing: border-box;
   border-radius: 20px;
   font-size: 15px;
+  text-align: center; /* Add this line to center the text */
+  color: black;
+  font-weight: bold;
 }
 
 .input-hint-container {
@@ -128,6 +131,11 @@ button:hover {
   font-weight: bold; 
 }
 
+.message-text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .submit-container {
   margin: 40px auto;
   max-width: 640px; /* Adjust the maximum width as needed */
@@ -165,4 +173,6 @@ button:hover {
   color: black;
 }
 
-
+.correct-guess {
+  background-color: rgb(128, 187, 128);
+}
