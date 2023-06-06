@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Document</title>
 </head>
 <body>
   <header>
@@ -14,21 +17,34 @@
     </div>
   </header>
 
-  <div class="ai-container">
-    <img src="ai-generated-image.png" alt="AI Generated Image">
-  </div>
+  <main>
+    <div class="ai-container">
+      <h2 id="image-title"></h2>
+      <img src="ai-generated-image.png" alt="AI Generated Image">
+    </div>
 
-  <div class="guess-container">
-    <input type="text" id="guess" placeholder=" Enter your guess...">
-    <button onclick="submitGuess()">Submit</button>
-  </div>
+    <div class="guess-container">
+      <div class="input-hint-container">
+        <input type="text" id="guess1" placeholder="Enter your first guess...">
+        <button class="hint-button" id="hint1">Hint</button>
+      </div>
+      <div class="input-hint-container">
+        <input type="text" id="guess2" placeholder="Enter your second guess...">
+        <button class="hint-button" id="hint2">Hint</button>
+      </div>
+    </div>
+    
+    <div class="submit-container">
+      <button class="submit-button" onclick="submitGuess(event)">Submit</button>
+    </div>
 
-  <div class="regenerate-container">
-    <button onclick="regenerateImage()">Regenerate</button>
-  </div>
-  
-  <div class="message-container">
-  </div>
+    <div class="regenerate-container">
+      <button class="regenerate-button" onclick="regenerateImage()">Regenerate</button>
+    </div>
+
+    <div class="message-container">
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
