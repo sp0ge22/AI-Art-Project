@@ -183,6 +183,14 @@ function submitGuess(event) {
   }
 }
 
+// Function to handle keydown event on input fields
+function handleInputKeyDown(event) {
+  if (event.key === "Enter") {
+    // Trigger the submit action
+    submitGuess(event);
+  }
+}
+
 // Attach event listeners to the buttons
 prevButton.addEventListener("click", showPrevImage);
 nextButton.addEventListener("click", showNextImage);
@@ -197,3 +205,7 @@ function showHint(hintButton, hint) {
 // Attach event listeners to the hint buttons
 hintButton1.addEventListener("click", function() { showHint(hintButton1, currentHints[0]) });
 hintButton2.addEventListener("click", function() { showHint(hintButton2, currentHints[1]) });
+
+// Attach event listeners to the input fields for the keydown event
+guessInput1.addEventListener("keydown", handleInputKeyDown);
+guessInput2.addEventListener("keydown", handleInputKeyDown);
