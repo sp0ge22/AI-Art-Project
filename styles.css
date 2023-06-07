@@ -25,7 +25,12 @@
 
 body {
   text-align: center;
-  background-color: #f2f2f2; /* Light grey color */
+  background-color: #f2f2f2;
+  height: 100vh; /* Add this line */
+  margin: 0; /* Add this line to remove default margins */
+  display: flex; /* Add this line */
+  flex-direction: column; /* Add this line */
+  justify-content: space-between; /* Add this line */
 }
 
 button {
