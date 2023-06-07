@@ -79,7 +79,7 @@ var data = {
     },
     {
       src: 'ai-generated-image-12.png',
-      answer: ['squirrell', 'astronaut'],
+      answer: ['squirrel', 'astronaut'],
       guessed: false,
       title: 'Godspeed Squeakie (by Spoge)',
       hints: ['Yard rodent', 'Neil Armstronk']
