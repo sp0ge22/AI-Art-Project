@@ -1,0 +1,85 @@
+body {
+    text-align: center;
+    background-color: #f2f2f2; /* Light grey color */
+  }
+  
+  button {
+    border-radius: 20px;
+    padding: 1px 20px;
+    height: 30px; 
+    background-color: white;
+    font-weight: bold; 
+    border: 2px solid black;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease; /* This makes the change in color smooth */
+  }
+  
+  button:hover {
+    background-color: #000000; /* Or any color */
+    color: #ffffff; /* Or any color */
+  }
+
+  img {
+    width: 320px; /* Or whatever width you want */
+    height: auto; /* Keep aspect ratio */
+    /* Add more styles as needed */
+  }
+  
+  .guess-container,
+  .input-hint-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .guess-container input {
+    width: 100%; /* Adjust based on your preference */
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-size: 15px;
+    text-align: center; /* Add this line to center the text */
+    color: black;
+    font-weight: bold;
+  }
+  
+  .input-hint-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 10px;
+  }
+  
+  .hint-button {
+    width: 100%; /* Make the button full width */
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 4px; /* Added this line */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .hint-button:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .modal-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal-section {
+    width: 45%; /* adjust as needed */
+  }
+
+  

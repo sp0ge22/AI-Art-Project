@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rules</title>
+  <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+  <div class="modal-content">
+    <!-- Left section -->
+    <div class="modal-section">
+      <h1>Title</h1>
+      <img src="images/example.png" alt="Example">
+
+      <!-- Guess 1 Component -->
+      <div class="input-hint-container">
+        <input type="text" id="guess1" placeholder="Enter your first guess...">
+        <button class="hint-button" id="hint1">Hint</button>
+      </div>
+
+      <!-- Guess 2 Component -->
+      <div class="input-hint-container">
+        <input type="text" id="guess2" placeholder="Enter your second guess...">
+        <button class="hint-button" id="hint2">Hint</button>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="modal-section">
+      <h1>Title</h1>
+      <p>The rules of the game...</p>
+    </div>
+  </div>
+
+  <button onclick="parent.closeModal()">Okay</button>
+</body>
+</html>

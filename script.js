@@ -15,6 +15,21 @@ import data from './images.js';
 
 const images = data.images;
 
+// Function to close the modal
+function closeModal() {
+  var modal = document.getElementById('module-container');
+  modal.style.display = "none";
+}
+
+// Initially display the modal
+window.onload = function() {
+  var modal = document.getElementById('module-container');
+  modal.style.display = "block";
+}
+
+// Expose closeModal function to the global scope so iframe can access it
+window.closeModal = closeModal;
+
 // Message Elements
 const congratsMessage = document.createElement("p");
 congratsMessage.classList.add("congrats-message");

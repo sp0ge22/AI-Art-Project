@@ -1,3 +1,26 @@
+/* Modal Styles */
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal iframe {
+  display: block; /* Block display to fill the full width */
+  margin: 15% auto; /* Center the iframe */
+  width: 1000px; /* Width of the iframe */
+  height: 50%; /* Height of the iframe */
+  background: #fff; /* Background color of the iframe */
+  border: 1px solid #888; /* Border color */
+}
+
 /* General styles */
 
 body {
