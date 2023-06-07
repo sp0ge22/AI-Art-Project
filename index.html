@@ -7,11 +7,10 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
   <title>Document</title>
 </head>
-<body>
   <!-- Add the iframe container for the module -->
-  <div id="module-container" class="modal">
+  <!-- <div id="module-container" class="modal">
     <iframe id="myModal" src="module.html" frameborder="0"></iframe>
-</div>
+</div> -->
 
   <header>
     <div class="logo-container">
@@ -19,8 +18,10 @@
     </div>
   </header>
 
-  <main>
-    <div class="ai-container">
+  <div class="spacer"></div>
+
+  <main class="main-content">
+      <div class="ai-container">
       <div class="title-change-container">
         <button class="previous-button">Previous</button>
         <h2 id="image-title"></h2>
@@ -29,7 +30,7 @@
       <img src="ai-generated-image.png?cachebust=<%= new Date().getTime() %>" alt="AI Generated Image">
       <img id="checkmark" src="checkmark.png" alt="Correct guess checkmark">
     </div>
-
+    
     <div class="guess-container">
       <div class="input-hint-container">
         <input type="text" id="guess1" placeholder="Enter your first guess...">
@@ -43,12 +44,17 @@
     
     <div class="message-container">
     </div>
-  </main>
 
     <div class="submit-container">
       <button class="submit-button">Submit</button>
     </div>
 
+  </main>
+
+  </body>
+
+  <div class="spacer"></div>
+
   <script src="script.js" type="module"></script>
-</body>
+
 </html>

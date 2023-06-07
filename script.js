@@ -90,7 +90,7 @@ function displayImage(index) {
   hintButton2.style.backgroundColor = "black"; // reset the hint button color
   messageContainer.innerHTML = ""; // Clear any messages
 
-  // Show or hide the checkmark based on whether the image has been guessed
+  // Show or hide the checkmark and submit button based on whether the image has been guessed
   if (image.guessed) {
     checkmark.style.display = "block";
     guessInput1.style.display = "none";
@@ -105,6 +105,7 @@ function displayImage(index) {
     guessInput1.style.display = "block";
     guessInput2.style.display = "block";
     submitButton.style.display = "block";
+    submitButton.style.visibility = "visible"; // Make sure the submit button is visible
     guessInput1.disabled = false;
     guessInput2.disabled = false;
     guessInput1.classList.remove("correct-guess");
@@ -115,70 +116,60 @@ function displayImage(index) {
 }
 
 function submitGuess(event) {
-  event.preventDefault(); // Prevent form submission or page reload
+  event.preventDefault(); 
 
   const userGuess1 = guessInput1.value.trim().toLowerCase();
   const userGuess2 = guessInput2.value.trim().toLowerCase();
 
-  // Log the user's guess to the console
   console.log("User's guess:", userGuess1, userGuess2);
 
-  // Clear any previous message
   messageContainer.innerHTML = "";
 
-  // Check if both words were guessed (in any order)
   if (
     (userGuess1 === currentAnswer[0] && userGuess2 === currentAnswer[1]) ||
     (userGuess1 === currentAnswer[1] && userGuess2 === currentAnswer[0])
   ) {
     console.log("Correct guess");
-    updateCongratsMessage();
-    images[currentIndex].guessed = true; // Update the guessed status
-    checkmark.style.display = "block"; // Show the checkmark
+    images[currentIndex].guessed = true;
+    checkmark.style.display = "block";
 
-    // Hide the submit button
-    submitButton.style.display = "none";
+    submitButton.style.visibility = "hidden";
 
-    // Disable and style the input fields for the correctly guessed image
     guessInput1.disabled = true;
     guessInput2.disabled = true;
     guessInput1.classList.add("correct-guess");
     guessInput2.classList.add("correct-guess");
   } else {
     console.log("Incorrect guess");
-    images[currentIndex].guessed = false; // Update the guessed status
-    checkmark.style.display = "none"; // Hide the checkmark
+    images[currentIndex].guessed = false;
+    checkmark.style.display = "none";
 
-    // Reset the style and enable the input fields for the incorrect guess
-    guessInput1.classList.remove("correct-guess");
-    guessInput2.classList.remove("correct-guess");
     guessInput1.disabled = false;
     guessInput2.disabled = false;
 
-    // Check if one or both words are correct
-    let incorrectGuess1 = true; // Flag to track incorrect guess for word 1
-    let incorrectGuess2 = true; // Flag to track incorrect guess for word 2
+    let incorrectGuess1 = userGuess1 !== currentAnswer[0] && userGuess1 !== currentAnswer[1];
+    let incorrectGuess2 = userGuess2 !== currentAnswer[0] && userGuess2 !== currentAnswer[1];
 
     // Check if word 1 is correct
-    if (userGuess1 === currentAnswer[0] || userGuess1 === currentAnswer[1]) {
-      guessInput1.classList.add("correct-guess"); // Apply the correct-guess class
-      incorrectGuess1 = false; // Set the flag for correct guess
+    if (!incorrectGuess1) {
+      guessInput1.classList.add("correct-guess");
+    } else {
+      guessInput1.classList.add("incorrect-guess");
     }
 
     // Check if word 2 is correct
-    if (userGuess2 === currentAnswer[0] || userGuess2 === currentAnswer[1]) {
-      guessInput2.classList.add("correct-guess"); // Apply the correct-guess class
-      incorrectGuess2 = false; // Set the flag for correct guess
+    if (!incorrectGuess2) {
+      guessInput2.classList.add("correct-guess");
+    } else {
+      guessInput2.classList.add("incorrect-guess");
     }
 
-    // Display messages based on the guess results
-    if (incorrectGuess1 && incorrectGuess2) {
-      updateTryAgainMessage();
-      messageContainer.innerHTML = "<p class='message-text'>You have guessed both words incorrectly. Try again.</p>"; // Set the message
-    } else if (!incorrectGuess1 && !incorrectGuess2) {
-      messageContainer.innerHTML = "<p class='message-text'>You have guessed both words correctly!</p>"; // Set the message
-    } else {
-      messageContainer.innerHTML = "<p class='message-text'>You have guessed one word correctly. Guess the other word.</p>"; // Set the message
+    // Flash red and remove the style if guess is incorrect
+    if (incorrectGuess1 || incorrectGuess2) {
+      setTimeout(() => {
+        guessInput1.classList.remove("incorrect-guess");
+        guessInput2.classList.remove("incorrect-guess");
+      }, 500); // remove the incorrect guess style after 0.5 seconds
     }
   }
 }

@@ -30,7 +30,7 @@ body {
   margin: 0; /* Add this line to remove default margins */
   display: flex; /* Add this line */
   flex-direction: column; /* Add this line */
-  justify-content: space-between; /* Add this line */
+  align-items: center;
 }
 
 button {
@@ -63,7 +63,8 @@ button:hover {
 }
 
 .ai-container {
-  position: relative;  /* make this a positioned parent */
+  position: relative;
+  text-align: center;
 }
 
 #checkmark {
@@ -165,7 +166,7 @@ button:hover {
 }
 
 .submit-container {
-  margin: 40px auto;
+  margin: 20px auto;
   max-width: 640px; /* Adjust the maximum width as needed */
   text-align: center;
 }
@@ -203,4 +204,37 @@ button:hover {
 
 .correct-guess {
   background-color: rgb(128, 187, 128);
+}
+
+.message-container {
+  margin-top: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; /* Add this line */
+  text-align: center;
+}
+
+.incorrect-guess {
+  animation: flash 0.5s linear infinite;
+}
+
+@keyframes flash {
+  0% {
+    background-color: red;
+    color: white;
+  }
+  50% {
+    background-color: white;
+    color: black;
+  }
+  100% {
+    background-color: red;
+    color: white;
+  }
+}
+
+.spacer {
+  flex: 1 0 auto;
+}
+
+.main-content {
+  flex: 0 0 auto; 
 }
