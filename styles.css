@@ -51,6 +51,15 @@ button:hover {
 
 /* Header styles */
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
 .logo-container {
   margin: 20px;
   width: 5%;
@@ -236,5 +245,6 @@ button:hover {
 }
 
 .main-content {
-  flex: 0 0 auto; 
+margin-top: 50px; /* Adjust margin based on header height */
+padding: 10px;
 }
